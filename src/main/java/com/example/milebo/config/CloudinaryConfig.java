@@ -1,4 +1,4 @@
-package com.example.Milebo.config;
+package com.example.milebo.config;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;

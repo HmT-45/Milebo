@@ -1,4 +1,4 @@
-package com.example.Milebo.config;
+package com.example.milebo.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationRunner;

@@ -1,4 +1,4 @@
-package com.example.Milebo;
+package com.example.milebo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
