@@ -1,0 +1,78 @@
+<div th:fragment="content">
+
+    <section class="home-hero">
+        <div class="hero-content">
+            <p class="hero-eyebrow">Milebo</p>
+            <h1 class="hero-title">Khám phá phong cách mới, chọn lựa chuẩn gu</h1>
+            <p class="hero-subtitle">Sản phẩm nổi bật theo danh mục — hiển thị đầy đủ thông tin để bạn quyết định nhanh.</p>
+        </div>
+        <div class="hero-orb hero-orb-one"></div>
+        <div class="hero-orb hero-orb-two"></div>
+    </section>
+
+    <div th:each="block : ${blocks}" class="category-block">
+
+        <div class="category-header">
+            <div>
+                <p class="category-eyebrow">Danh mục</p>
+                <h3 class="category-title" th:text="${block.category.name}"></h3>
+            </div>
+
+            <a th:href="@{/category/{code}(code=${block.category.code})}"
+               class="category-link">
+                Xem tất cả
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3"
+                 th:each="p : ${block.products}">
+                <article class="product-card">
+                    <div class="product-media">
+                        <img th:if="${p.image != null}"
+                             th:src="${p.image}"
+                             alt="Product image"
+                             class="product-image">
+                        <div class="product-badges">
+                            <span class="badge-pill" th:text="${p.status ? 'Hoạt động' : 'INACTIVE'}"></span>
+                            <span class="badge-pill badge-code" th:text="${p.code}"></span>
+                        </div>
+                    </div>
+
+                    <div class="product-body">
+                        <div class="product-meta">
+                            <span class="product-category" th:text="${p.category.name}"></span>
+                            <span class="product-qty"
+                                  th:text="'Kho: ' + ${p.quantity}"></span>
+                        </div>
+
+                        <h5 class="product-name" th:text="${p.name}"></h5>
+
+                        <p class="product-desc"
+                           th:text="${p.description}"></p>
+
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="price-value"
+                                      th:text="${#numbers.formatDecimal(p.price,0,'COMMA',0,'POINT')}"></span>
+                                <span class="price-unit">₫</span>
+                            </div>
+
+                            <div class="product-discount" th:if="${p.discount != null}">
+                                <span class="discount-label" th:text="${p.discount.name}"></span>
+                                <span class="discount-value"
+                                      th:text="${p.discount.value}"></span>
+                            </div>
+                            <div class="product-discount muted" th:if="${p.discount == null}">
+                                Không giảm giá
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+    </div>
+
+</div>

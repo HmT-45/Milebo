@@ -1,0 +1,28 @@
+Milebo
+------------------------------------   BE   --------------------------------------------------
+-config/
+-controller/
+    -AdminDashboardController
+    -CategoryAdminController
+        1. bật, tắt category
+        2. category chỉ tắt không xóa
+        3. có dto cho create, update
+        4. url của admin hiện id, client hiện code generated
+        5. có validate
+    -ProductAdminController
+-dto/
+    -category/
+        -CategoryCreateRequest
+        -CategoryUpdateRequest
+    -product/
+        -ProductCreateRequest
+        -ProductUpdateRequest
+-model/
+-repository/
+-service/
+------------------------------------   FE   --------------------------------------------------
+-static/
+    -admin/
+        -css/
+            -category-edit.css
+        -js/

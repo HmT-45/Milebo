@@ -1,0 +1,90 @@
+<th:block th:fragment="content">
+
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-10 col-lg-8">
+
+                <div class="card shadow-sm">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">➕ Thêm sản phẩm</h5>
+                    </div>
+
+                    <div class="card-body">
+                        <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+                        <form th:action="@{/admin/product/save}"
+                              th:object="${product}"
+                              method="post"
+                              enctype="multipart/form-data">
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Tên sản phẩm</label>
+                                    <input type="text" th:field="*{name}" class="form-control" required>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label">Danh mục</label>
+                                    <select th:field="*{categoryId}" class="form-select">
+                                        <option value="">-- Chọn danh mục --</option>
+                                        <option th:each="c : ${categories}"
+                                                th:value="${c.id}"
+                                                th:text="${c.name}">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Mô tả</label>
+                                <textarea th:field="*{description}" class="form-control" rows="4"></textarea>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label">Giá (VNĐ)</label>
+                                    <!-- input hiển thị -->
+                                    <input type="text"
+                                           class="form-control"
+                                           data-currency="priceHidden"
+                                           placeholder="0">
+                                    <!-- input submit -->
+                                    <input type="hidden"
+                                           id="priceHidden"
+                                           th:field="*{price}">
+                                </div>
+
+
+                                <div class="col-md-4">
+                                    <label class="form-label">Số lượng</label>
+                                    <input type="number" th:field="*{quantity}" class="form-control">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="form-label">Trạng thái</label>
+                                    <select th:field="*{status}" class="form-select">
+                                        <option value="true">Hoạt động</option>
+                                        <option value="false">Ngừng hoạt động</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Ảnh</label>
+                                <input type="file" name="imageFile" class="form-control">
+                            </div>
+
+                            <div class="d-flex justify-content-end gap-2">
+                                <a href="/admin/product" class="btn btn-secondary">Huỷ</a>
+                                <button type="submit" class="btn btn-primary">Lưu</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</th:block>

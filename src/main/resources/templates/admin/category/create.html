@@ -1,0 +1,38 @@
+    <th:block th:fragment="content">
+
+        <div class="card">
+            <h3>Thêm danh mục</h3>
+            <br>
+
+            <!-- Error -->
+            <div th:if="${error}" class="error-box">
+                <p th:text="${error}"></p>
+            </div>
+
+            <form th:action="@{/admin/category/save}"
+                  th:object="${category}"
+                  method="post">
+
+                <div class="form-group">
+                    <label>Tên danh mục</label>
+                    <input type="text"
+                           th:field="*{name}"
+                           placeholder="Nhập tên danh mục"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label>Trạng thái</label>
+                    <select th:field="*{status}">
+                        <option value="true">Hoạt động</option>
+                        <option value="false">Ngừng hoạt động</option>
+                    </select>
+                </div>
+
+                <button class="btn btn-primary">Lưu</button>
+                <a class="btn" th:href="@{/admin/category}">Huỷ</a>
+            </form>
+
+        </div>
+
+    </th:block>

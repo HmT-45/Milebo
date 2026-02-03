@@ -1,0 +1,54 @@
+<div class="card shadow-sm">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">Danh sách sản phẩm</h5>
+        <a th:href="@{/admin/product/create}" class="btn btn-primary btn-sm">
+            + Thêm sản phẩm
+        </a>
+    </div>
+
+    <div class="card-body p-0">
+        <table class="table table-bordered table-hover align-middle mb-0">
+            <thead class="table-light text-center">
+            <tr>
+                <th>ID</th>
+                <th>Code</th>
+                <th>Tên</th>
+                <th>Mô tả</th>
+                <th>Danh mục</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Trạng thái</th>
+                <th>Hình ảnh</th>
+                <th>Hành động</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="p : ${items}">
+                <td th:text="${p.id}"></td>
+                <td th:text="${p.code}"></td>
+                <td th:text="${p.name}"></td>
+                <td class="text-truncate" style="max-width: 200px"
+                    th:text="${p.description}"></td>
+                <td th:text="${p.category.name}"></td>
+                <td th:text="${#numbers.formatDecimal(p.price, 0, 'COMMA', 0, 'POINT')}"></td>
+                <td th:text="${p.quantity}"></td>
+                <td class="text-center">
+                    <span th:if="${p.status}" class="badge bg-success">Hoạt động</span>
+                    <span th:if="${!p.status}" class="badge bg-secondary">Ngừng hoạt động</span>
+                </td>
+                <td class="text-center">
+                    <img th:if="${p.image}"
+                         th:src="${p.image}"
+                         style="width:60px;height:60px;object-fit:cover;border-radius:6px"/>
+                </td>
+                <td class="text-center">
+                    <a th:href="@{/admin/product/edit/{id}(id=${p.id})}"
+                       class="btn btn-sm btn-warning">
+                        Sửa
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

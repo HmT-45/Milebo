@@ -1,0 +1,15 @@
+<!-- admin/fragment/sidebar.html -->
+<div th:fragment="sidebar" class="sidebar">
+    <h2>MILEBO ADMIN</h2>
+        <ul>
+            <li><a th:href="@{/admin/dashboard}"> Dashboard</a></li>
+            <li><a th:href="@{/admin/category}">Danh mục   <i class="fa-solid fa-table-columns"></i></a></li>
+            <li><a th:href="@{/admin/product}"> Sản phẩm <i class="fa-solid fa-mobile"></i></a></li>
+            <li><a th:href="@{/admin/discount}"> Giảm giá <i class="fa-solid fa-percent"></i></a></li>
+            <li><a th:href="@{/admin/voucher}"> Voucher <i class="fa-solid fa-ticket"></i></a></li>
+            <li><a th:href="@{/admin/order}"> Đơn hàng</a></li>
+            <li><a th:href="@{/admin/user}"> Người dùng</a></li>
+            <li><a th:href="@{/admin/inventory}"> Kho hàng <i class="fa-solid fa-warehouse"></i></a></li>
+
+        </ul>
+</div>

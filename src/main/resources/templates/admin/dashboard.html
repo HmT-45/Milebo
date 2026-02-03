@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Admin Dashboard</title>
+
+    <!-- Import Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
+<h3>Admin Dashboard</h3>
+<!--NƠI VẼ CHART -->
+<canvas id="revenueChart" width="600" height="300"></canvas>
+
+<!--SCRIPT VẼ CHART (CUỐI FILE) -->
+<script th:inline="javascript">
+    const labels = [[${labels}]];
+    const data   = [[${data}]];
+
+    const ctx = document.getElementById('revenueChart');
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Doanh thu 7 ngày',
+                data: data,
+                borderWidth: 2
+            }]
+        }
+    });
+</script>
 </body>
 </html>

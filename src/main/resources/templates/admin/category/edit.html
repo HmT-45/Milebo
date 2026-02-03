@@ -1,0 +1,34 @@
+<th:block th:fragment="content">
+    <form th:action="@{/admin/category/update}"
+          th:object="${category}"
+          method="post">
+
+        <!-- ID: chỉ xem -->
+        <div class="form-group">
+            <label>ID</label>
+            <input type="text" th:value="*{id}" readonly>
+            <input type="hidden" th:field="*{id}">
+        </div>
+
+        <!-- Name -->
+        <div class="form-group">
+            <label>Tên danh mục</label>
+            <input type="text"
+                   th:field="*{name}"
+                   required>
+        </div>
+
+        <!-- Status -->
+        <div class="form-group">
+            <label>Trạng thái</label>
+            <select th:field="*{status}">
+                <option value="true">Hoạt động</option>
+                <option value="false">Ngừng sử dụng</option>
+            </select>
+        </div>
+
+        <button class="btn btn-primary">Cập nhật</button>
+        <a class="btn" th:href="@{/admin/category}">Huỷ</a>
+    </form>
+
+</th:block>

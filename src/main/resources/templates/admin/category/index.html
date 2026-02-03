@@ -1,0 +1,54 @@
+<div class="card">
+    <h3>Danh mục</h3><br>
+
+    <!-- Thanh tìm kiếm -->
+    <form method="get" class="search-bar">
+        <input type="text"
+               name="keyword"
+               placeholder="Tìm danh mục..."
+               th:value="${keyword}">
+        <button class="btn btn-primary">Tìm</button>
+    </form>
+
+    <br>
+
+    <!-- Thêm danh mục -->
+    <a class="btn btn-primary" th:href="@{/admin/category/create}">
+        + Thêm danh mục
+    </a>
+</div>
+
+<br>
+
+<!-- Bảng danh mục -->
+<table class="table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Tên danh mục</th>
+        <th>Hành động</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="c : ${items}"></td>
+        <td th:text="${c.id}"></td>
+        <td th:text="${c.name}"></td>
+
+        <td>
+            <!-- btn sửa -->
+            <a class="btn btn-sm btn-primary"
+               th:href="@{/admin/category/edit/{id}(id=${c.id})}">
+                Sửa
+            </a>
+
+            <!-- Trạng thái -->
+            <span th:if="${c.status}" class="badge badge-active">Hoạt động</span>
+
+            <span th:if="${!c.status}" class="badge badge-inactive">Ngừng hoạt động</span>
+
+        </td>
+    </tr>
+
+    </tbody>
+</table>

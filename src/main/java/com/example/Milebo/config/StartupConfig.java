@@ -11,7 +11,7 @@ import java.sql.Connection;
 @Slf4j
 @Configuration
 public class StartupConfig {
-
+//để check kết nối sql server
     @Bean
     ApplicationRunner logDatabaseConnection(DataSource dataSource) {
         return args -> {

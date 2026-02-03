@@ -1,0 +1,88 @@
+<th:block th:fragment="content">
+<div class="card shadow-sm">
+    <div class="card-header">
+        <h5 class="mb-0">Cập nhật sản phẩm</h5>
+    </div>
+
+    <div class="card-body">
+
+        <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
+        <form th:action="@{/admin/product/update}"
+              th:object="${product}"
+              method="post"
+              enctype="multipart/form-data">
+
+            <input type="hidden" th:field="*{id}"/>
+
+            <div class="mb-3">
+                <label class="form-label">Tên sản phẩm</label>
+                <input type="text" th:field="*{name}" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Mô tả</label>
+                <textarea th:field="*{description}" class="form-control" rows="3"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Danh mục</label>
+                <select th:field="*{categoryId}" class="form-select" required>
+                    <option th:each="c : ${categories}"
+                            th:value="${c.id}"
+                            th:text="${c.name}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Ảnh hiện tại</label><br>
+                <img th:if="${product.image}"
+                     th:src="${product.image}"
+                     style="width:120px;height:120px;object-fit:cover;border-radius:8px">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label"> Đổi ảnh mới</label>
+                <input type="file" name="imageFile" class="form-control">
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Giá (VNĐ)</label>
+
+                    <!-- input hiển thị -->
+                    <input type="text"
+                           class="form-control"
+                           data-currency="priceHidden"
+                           placeholder="0">
+
+                    <!-- input submit -->
+                    <input type="hidden"
+                           id="priceHidden"
+                           th:field="*{price}">
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Số lượng</label>
+                    <input type="number" th:field="*{quantity}" class="form-control" min="0">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Trạng thái</label>
+                <select th:field="*{status}" class="form-select">
+                    <option th:value="true">Hoạt động</option>
+                    <option th:value="false">Ngừng hoạt động</option>
+                </select>
+            </div>
+
+            <div class="d-flex gap-2">
+                <button class="btn btn-warning">Cập nhật</button>
+                <a th:href="@{/admin/product}" class="btn btn-secondary">Quay lại</a>
+            </div>
+
+        </form>
+    </div>
+</div>
+</th:block>
